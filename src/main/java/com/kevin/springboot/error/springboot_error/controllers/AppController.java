@@ -30,7 +30,9 @@ public class AppController {
 
     @GetMapping("/show/{id}")
     public User show(@PathVariable Long id) {
-        return userService.findById(id);
+        User user = userService.findById(id);
+        System.out.println(user.getName());
+        return user;
     }
     
 }
