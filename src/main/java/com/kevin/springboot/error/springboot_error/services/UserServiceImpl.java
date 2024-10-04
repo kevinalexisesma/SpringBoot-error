@@ -2,9 +2,11 @@ package com.kevin.springboot.error.springboot_error.services;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 
+import com.kevin.springboot.error.springboot_error.Models.domain.Role;
 import com.kevin.springboot.error.springboot_error.Models.domain.User;
 
 @Service
@@ -28,8 +30,17 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User findById(Long id) {
-        return users.stream().filter(user -> user.getId() == id).findFirst().orElse(null);
+    public Optional<User> findById(Long id) {
+        User userR = null;
+        for (User user : users) {
+            if(user.getId() == id)
+            {
+                userR = user;
+                break;
+            }
+
+        }
+        return Optional.ofNullable(userR);
     }
 
 
